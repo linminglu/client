@@ -8,23 +8,6 @@ let endPosY = 550
 
 export class TweenMsgView {
 
-//     private static nodeMsg :cc.Node = null;
-
-//     public static getNode(){
-//         if(this.nodeMsg==null){
-//             cc.log('cc.node == null,执行new cc.node()');
-//             this.nodeMsg =new cc.Node()
-//             this.nodeMsg.opacity = 0
-//             this.nodeMsg.scale = 0.9
-//             this.nodeMsg.setContentSize(1000)
-//             this.nodeMsg.position = cc.p(beginPosX, beginPosY)
-//             cc.director.getScene().addChild(this.nodeMsg, 9999)
-//             return this.nodeMsg
-//         }else{
-//             return this.nodeMsg
-//         }
-//    }
-
     public static showMsg(codeId: number = 0, deleyTime: number = 0.3) {
         FuncUtil.getJsonConfig("tween_msg", codeId, function (data) {
             let str = data.msgContent

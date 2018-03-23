@@ -24,17 +24,17 @@ export default class ActivityView extends BaseView {
             event.stopPropagation();
         })
        
-        MainController.instance.C_Activity_GetAvailableActivityList();
+        //MainController.instance.C_Activity_GetAvailableActivityList();
     }
     onDestroy() {
         super.destructor();
-        ActivityModel.instance.unregisterModelChanged("ACTLIST_DATA", this.changeDatFunc, this)
+      
     }
     onEnable(){
-        ActivityModel.instance.registerModelChanged("ACTLIST_DATA", this.changeDatFunc, this)
+   
     }
     onDisable(){
-        ActivityModel.instance.unregisterModelChanged("ACTLIST_DATA", this.changeDatFunc, this)
+    
     }
     
     updateLabelFunc(eventName:string, args1:string, args2:number) {

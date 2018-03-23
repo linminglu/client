@@ -43,6 +43,7 @@ export default class LonghudouView extends GameView {
         LonghudouModule.instance.hide()
     }
     
+    
     protected startComparePaiFun() {
 
         //if(this.layClose){

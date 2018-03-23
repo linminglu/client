@@ -13,6 +13,7 @@ import { GameManager } from "../../../common/manager/GameManager"
 import { EmitterManager as Emitter } from "../../../common/manager/EmitterManager"
 import { EmitterCfg } from "../../../../app/config/EmitterConfig"
 import { SignModel } from "../../sign/model/SignModel"
+import  { MainController }  from "../../main/controller/MainController"
 export class GameController extends BaseController {
     //确定投注
     C_Betting(bettingMsgList) {
@@ -120,7 +121,8 @@ export class GameController extends BaseController {
     }
 
     S_QuiteGame(msg) {
-
+        // console.log("11111111111111111111111========9999999");
+        MainController.instance.C_Activity_GetAvailableActivityList()//退出游戏刷新活动列表
         Emitter.fire(EmitterCfg.GAME_EXIT_SUCC, msg)
     }
 

@@ -78,11 +78,7 @@ export default class ScrollView0 extends cc.Component {
     onDestroy() {
 
         RecordModel.instance.unregisterModelChanged("COMMON_RECORD_DATA_A", this.upRecordDataListFun0, this)
-        for(let i = 0 ; i < this.recordArr.length ; i++){
-            if (cc.isValid(this.recordArr[i])) {
-                NodePoolMgr.instance.putNood(this.recordArr[i], NodePoolKey.LOTTERY_HISTORY)
-            }
-        }
+     
     }
 
     upRecordDataListFun0(eventName: string, data) {   //列表刷新
@@ -121,19 +117,14 @@ export default class ScrollView0 extends cc.Component {
             if (i < recordArrLen) {
                 this.recordArr[i].getComponent("LotteryDataItem").recordLotteryDataFun(dataArr[i]);
             } else {
-                console.log('tag','11111111111111111111111111234')
                 let prefab = NodePoolMgr.instance.getNood(NodePoolKey.LOTTERY_HISTORY)
-                console.log('11111='+prefab)
+                console.log("prefab====",prefab)
                 if (cc.isValid(prefab)) {
                     this.Content.addChild(prefab)
                     prefab.getComponent("LotteryDataItem").recordLotteryDataFun(dataArr[i]);
                     this.recordArr.push(prefab)
-                    console.log('tag','11111111111111111111111111创建了')
-                    cc.log('tag','11111111111111111111111111创建了')
-
+                    console.log("11111111111111111111111111创建了")
                 } else {
-                    console.log('tag','11111111111111111111111111没有创建！')
-                    cc.log('tag','11111111111111111111111111没有创建！')
                     ResCfg.loadPrefab(this, "lotteryDataItem", function (self, Prefab) {
                         let cView = cc.instantiate(Prefab);
                         self.Content.addChild(cView)
@@ -143,13 +134,15 @@ export default class ScrollView0 extends cc.Component {
                 }
             }
         }
+        // if(cc.isValid(this.recordArr[recordArrLen-1])){
+        //     console.log("777777777777777777777777777777",this.recordArr[recordArrLen-1].children)
+        // }
         if (dataLen > 6) {
             let obj1 = null 
             for (let i =recordArrLen -1 ; i >= dataLen ; i--) {
                 obj1 = this.recordArr.pop()
                 if (cc.isValid(obj1)) {
                     NodePoolMgr.instance.putNood(obj1, NodePoolKey.LOTTERY_HISTORY)
-                    //NodePoolMgr.instance.clear(NodePoolKey.LOTTERY_HISTORY)
                 }
             }
         } else {
@@ -158,7 +151,6 @@ export default class ScrollView0 extends cc.Component {
                 obj2 = this.recordArr.pop()
                 if (cc.isValid(obj2)) {
                     NodePoolMgr.instance.putNood(obj2, NodePoolKey.LOTTERY_HISTORY)
-                    //NodePoolMgr.instance.clear(NodePoolKey.LOTTERY_HISTORY)
                 }
                
             }

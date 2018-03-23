@@ -34,8 +34,9 @@ export default class MainView extends BaseView {
         FuncUtil.delayFunc(function () {
             LoginModule.instance.hide()
         }, 1, this.node)
-        this.diyiciStatNotice()
         MainController.instance.C_Activity_GetAvailableActivityList()
+        this.diyiciStatNotice()
+       
     }
 
     // start() {

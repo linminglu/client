@@ -104,7 +104,7 @@ export class MainController extends BaseController {
     //获取房间内信息
     S_EnterGame(msg) {
 
-        this.C_Activity_GetAvailableActivityList()
+        //this.C_Activity_GetAvailableActivityList()
         Emitter.fire(EmitterCfg.MAIN_CHONLIAN, null)
         if (msg.gameType == 0) {
             Emitter.fire(EmitterCfg.GAME_EXIT_GAME)

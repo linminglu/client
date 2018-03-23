@@ -40,7 +40,8 @@ export default class ActContentScrollView extends cc.Component {
         Emitter.register(EmitterCfg.MAIN_BNT_ACTIVITY, this.contentChangeFun, this);
         this.Content2 = this.node.getChildByName("view").children
         this.node.getComponent(cc.ScrollView).content = this.Content2[0];
-
+        let dataArr = ActivityModel.instance.getActivityList()
+        this.upDataActivityFun("null",dataArr)
     }
     onDestroy(){
         ActivityModel.instance.unregisterModelChanged("ACTLIST_DATA", this.upDataActivityFun, this)

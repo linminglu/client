@@ -31,50 +31,57 @@ export default class StartScene extends cc.Component {
     isBackGround = false
     sprAnima: cc.Animation = null
 
+    lblMemory:any= null
     onLoad() {
         this.onEveRegister();
 
         //创建层管理
         LayerMgr.creatLayer();
-
-        // if (CC_DEBUG) {
-        //     if (cc.sys.isNative) {
-        //         this.createDebugBtn()
-        //         this.createMemory()
-        //     }
-        // }
+        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+        if (CC_DEBUG) {
+            console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC")
+            if (cc.sys.isNative) {
+                console.log("sAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+               // this.createDebugBtn()
+                this.createMemory()
+            }
+        }
 
         this.openLoginModuleFunc()
+       
     }
 
     createMemory() {
         let node = new cc.Node()
-        node.setContentSize(cc.size(60, 30))
-        node.setPosition(cc.p(-500, 340))
+        node.setContentSize(cc.size(200, 100))
+        node.setPosition(cc.p(0, 200))
 
         LayerMgr.topLayer.addChild(node, 9999)
 
-        let lbl = node.addComponent(cc.Label)
-        lbl.horizontalAlign = cc.Label.HorizontalAlign.LEFT
-        lbl.node.anchorX = 0
-        lbl.fontSize = 20
-        lbl.string = "memory"
+        this. lblMemory = node.addComponent(cc.Label)
+        this. lblMemory.horizontalAlign = cc.Label.HorizontalAlign.LEFT
+        this. lblMemory.node.anchorX = 0
+        this. lblMemory.fontSize = 20
+        this.lblMemory.string = "memory"
+        
+        // node.on('touchstart', function (event) {
+        //     let memory = PlatformMgr.getMemory()
+        //     lbl.string = `memory：${Math.floor(memory / 1024)}MB`
+        // }, this)
 
-        node.on('touchstart', function (event) {
-            let memory = PlatformMgr.getMemory()
-            lbl.string = `memory：${Math.floor(memory / 1024)}MB`
-        }, this)
-
-        this.schedule(function () {
-            let memory = PlatformMgr.getMemory()
-            lbl.string = `memory：${Math.floor(memory / 1024)}MB`
-        }, 60)
+        // this.schedule(function () {
+        //     let memory = PlatformMgr.getMemory()
+        //     lbl.string = `memory：${Math.floor(memory / 1024)}MB`
+        // }, 60)
     }
 
+    update(dt){
+       this.lblMemory.string = `memory：${Math.floor( PlatformMgr.getMemory() / 1024)}MB`
+    }
     createDebugBtn() {
         let node = new cc.Node()
         node.setContentSize(cc.size(60, 30))
-        node.setPosition(cc.p(-610, 340))
+        node.setPosition(cc.p(0,200))
 
         LayerMgr.topLayer.addChild(node, 9999)
 

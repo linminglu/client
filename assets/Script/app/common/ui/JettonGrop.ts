@@ -90,7 +90,7 @@ export default class JettonGrop extends cc.Component {
                     }
                 }
             }, 0.02 * i, this.node)
-            // }, 0.02)
+
         }
 
     }

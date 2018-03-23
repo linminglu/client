@@ -4,7 +4,7 @@ import { LonghudouModel } from "./model/LonghudouModel";
 import { LonghudouController } from "./controller/LonghudouController";
 import LonghudouView from "./view/LonghudouView";
 import { LayerManager as LayerMgr } from "../../common/manager/LayerManager";
-
+import { GameModule } from "../game/GameModule"
 export class LonghudouModule extends BaseModule {
     
 

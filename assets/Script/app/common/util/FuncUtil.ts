@@ -1,5 +1,6 @@
 
 import { GameCollectManager as GameColMgr } from "../manager/GameCollectManager"
+import { NodePoolMgr, NodePoolKey } from "../../common/manager/NodePoolMgr"
 
 interface IpPortObj {
     ip: string;
@@ -293,5 +294,13 @@ cc.log(obj)
 
     export function QuiteGame() {
 
+    }
+    export function oD(objArr,objName){
+        for(let i = 0 ; i < this.objArr.length ; i++){
+            if(this.objArr[i]) {
+                //console.log("销毁~~~~~~~~111~~~~~~~~~")
+                NodePoolMgr.instance.putNood(this.objArr[i], objName)
+            }
+        }
     }
 }
