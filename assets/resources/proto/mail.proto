@@ -1,0 +1,43 @@
+import  "maildata.proto";	
+import "commondata.proto";	
+message C_Mail_GetMailList { // 邮件正文
+	optional int32 mailListType = 1;//邮件列表类型
+	optional int64 mailIndex = 2;//邮件游标
+}
+
+message S_Mail_GetMailList { // 邮件正文
+	repeated com.maildata.mail mails = 1;//邮件列表
+}
+
+message C_Mail_FetchMail { // 领取邮件请求
+	optional int64 mailId = 4;//邮件ID
+	optional int32 mailType = 1;//1抢的是红包池，0抢的是单个红包
+}
+
+message S_Mail_FetchMail { // 领取邮件结果
+	optional com.maildata.mail mails = 1;//该邮件最新状态
+}
+
+message C_Mail_SendMail { // 领取邮件请求
+	optional int64 playerId = 4;//目标玩家ID
+	optional string mailContent = 1;//邮件正文
+	optional string mailTitle = 2;//邮件内容
+	repeated IntLongEntry attachment = 3;//邮件附件
+	optional int32 receivedCount = 5;//收件人计数
+}
+
+message S_Mail_SendMail { // 领取邮件结果
+	optional int64 sendStatus = 1;//发送状态,小于0表示发送异常，1表示正确发送给对方，2表示自己收到了邮件
+	optional com.maildata.mail mails = 2;//该邮件最新状态
+}
+
+message C_Mail_CheckMail { // 查看红包池请求
+	optional int64 sendId = 2;//发送人ID
+	optional int64 mailBoxId = 1;//红包池ID
+}
+
+message S_Mail_CheckMail { // 查看红包池结果
+	repeated StringLongEntry mails = 1;//红包池列表
+	optional int32 leftMailCount = 2;//剩余红宝数
+	repeated IntLongEntry attachment = 3;//红包余额
+}

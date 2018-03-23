@@ -1,0 +1,36 @@
+
+
+message  C_Chat{ //聊天	
+	optional int32 type = 1;       // 消息类型(类型说明 1:大厅,2:私聊,3:房间)	
+	optional string content = 2;   // 消息内容	
+	optional int64 toPlayerId = 3; // 接受者玩家ID (仅用于私聊)
+}
+
+message  S_Chat{ //聊天	
+	optional int64 sendPlayerId = 1;     // 角色编号	
+	optional string sendPlayerName = 2;  // 角色名字
+	optional int32 type = 3; 	  	// 消息类型(类型说明 1:大厅,2:私聊,3:房间)	
+	optional string content = 4;  		 // 消息内容
+	optional int64 toPlayerId = 5;		 // 接受者玩家ID (仅用于私聊，系统个人信息)
+}
+
+message S_SynNotic{ //公告
+	optional int32 type = 1;       // 公告类型  1：系统  2：游戏公告	
+	optional string content = 2;   // 公告内容  （手写文本）
+}
+
+
+message C_PostVoice{ //上传语音信息
+	optional string id = 1;      // 语音序列ID(玩家ID+时间戳)
+	optional bytes voice = 2;  	 // 语音内容
+}
+message S_PostVoice{ //上传语音信息
+	optional string id = 1;      // 语音序列ID(玩家ID+时间戳)	
+}
+
+message C_GetVoice{ //获取语音信息
+	optional string id = 1;       // 语音序列ID	
+}
+message S_GetVoice{ //获取语音信息
+	optional bytes voice = 1;  	 // 语音内容
+}

@@ -1,0 +1,42 @@
+{
+  "id0": {
+    "msgId": 0,
+    "msgContent": "<color=#ff0000>测试</color><color=#ffffff>提示</color>"
+  },
+  "id1": {
+    "msgId": 1,
+    "msgContent": "<color=#ff0000>超出当前场次最大投注额，不能投注</color>"
+  },
+  "id2": {
+    "msgId": 2,
+    "msgContent": "<color=#ff0000>小于当前场次最小投注额，不能投注</color>"
+  },
+  "id3": {
+    "msgId": 3,
+    "msgContent": "<color=#ff0000>当前投注已经结束，不能投注</color>"
+  },
+  "id4": {
+    "msgId": 4,
+    "msgContent": "<color=#ffcc00>确认投注成功！</color>"
+  },
+  "id5": {
+    "msgId": 5,
+    "msgContent": "<color=#ff0000>余额不足，无法下注！</color>"
+  },
+  "id6": {
+    "msgId": 6,
+    "msgContent": "<color=#ff0000>请确认下注后，再重复下注！</color>"
+  },
+  "id7": {
+    "msgId": 7,
+    "msgContent": "<color=#ff0000>红包发送成功！</color>"
+  },
+  "id8": {
+    "msgId": 8,
+    "msgContent": "<color=#ff0000>超出当前区域最大投注额，不能投注</color>"
+  },
+  "id9": {
+    "msgId": 9,
+    "msgContent": "<color=#ff0000>小于当前区域最小投注额，不能投注</color>"
+  }
+}

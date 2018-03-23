@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "PlayTheTape",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.0166666666666666,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "aa673f29-c066-41c0-ab5b-7c4b9d9fbff1"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "6104b498-e45a-49b8-a415-a15f87cc9ff9"
+            }
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "226f26ec-b078-49f4-b0f5-9482143d7c37"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "6104b498-e45a-49b8-a415-a15f87cc9ff9"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -1,0 +1,7 @@
+
+//1增加金币 (1个参数 数量）
+message C_Test {
+	optional int32 type=1; // 类型	
+	optional int32 param1=2; // 参数1
+	optional int32 param2=3; // 参数2	
+}

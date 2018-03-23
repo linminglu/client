@@ -1,0 +1,25 @@
+import "player.proto";	
+
+message C_FriendList{  //获取好友列表	
+	
+}
+
+message S_FriendList{  //申请添加好友返回	
+	repeated OtherPlayerMsg friendList = 1; //好友列表				
+}
+
+message C_AddFriend{  //添加好友	
+	required int64 applyPlayerId = 1 ;// 对方的角色编号
+}
+
+message S_AddFriend{  //添加好友返回	
+	optional OtherPlayerMsg friendMsg = 1; //角色信息
+}
+
+message C_DeleteFriend{ //删除好友	
+	required int64 deletePlayerId = 1;// 要删除的角色编号		
+}
+
+message S_DeleteFriend{  //删除好友返回	
+	required int64 deletePlayerId = 1;// 角色编号		
+}

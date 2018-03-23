@@ -1,0 +1,104 @@
+message ActivityInfo {
+	optional int64 startTime = 4;
+	optional int64 endTime = 5;
+	optional string activityTitle = 7;//活动标题
+	optional int32 isHot = 8;//是否热门活动
+	optional string activityIcon = 9;
+	optional int32 activitySeq = 1;//活动序号
+	optional int32 activityType = 2;//活动类型
+	optional bytes activityContent = 3;//活动内容本体
+	optional string activityDescription = 10;//活动描述
+	optional string activityName = 11;//活动名称
+}
+
+message ActivityFetchObject{
+	optional int32 activitySeq = 1;//活动序号
+	optional bytes activityContent = 3;//活动领取奖励内容本体
+}
+
+message ActivityFetchResultObject{
+	optional int32 activitySeq = 1;//活动序号
+	optional bytes activityContent = 3;//活动领取奖励返回内容本体
+}
+
+message TwebadminActivitiesschedule4Proto{
+	optional int32 activitySeq = 1;
+	optional int32 zoneId = 2;
+	optional int32 activityTypeId = 3;
+	optional string activityIcon = 4;
+	optional string activityTitle = 5;
+	optional string activityDesc = 6;
+	optional int64 startTime = 7;
+	optional int64 endTime = 8;
+	optional int32 hot = 9;
+	optional string activityConfig = 10;
+	optional int32 isDisabled = 11;
+}
+
+message C_SignIn{
+	optional int32 activitySeq = 1;//活动排期流水号
+	optional int32 type = 2;//0-签到   1-补签
+}
+message S_SignIn{
+	optional int32 result = 1;//0-操作失败  1-签到成功 2-补签成功
+}
+message S_SignInInfo{
+	optional int32 activitySeq = 1;//活动排期流水号
+	optional int32 integral = 2;//活动积分
+	optional int32 count = 3;//本月累计签到次数
+	optional string signHistoy = 4;//本月签到时间
+	optional int32 state = 5;//状态 （0-未签  1-已签）
+	optional int32 receiveIntegral = 6;//签到可领取积分
+	optional int32 reward = 7;//满连续签到天数的奖励积分
+	optional int32 continueDay = 8;//连续签到天数
+	optional int32 consume = 9;//补签消耗
+}
+
+message S_DayActiveTips{ //每日游戏完成提示红点
+}
+message S_DayCompleteInfo{
+	optional int32 activitySeq = 1;//活动排期流水号
+	optional int32 complete = 2;//当天完成局数
+	optional int32 reward = 3;//奖励积分
+	optional int32 gameTotal = 4;//需要完成的总局数
+	optional int32 state = 5;//状态（0-未完成  1-未领取  2-已领取）
+}
+message C_DayActive{
+	optional int32 activitySeq = 1;//活动排期流水号
+}
+message S_DayActive{
+	optional int32 result = 1;//0-领取失败  1-领取成功
+}
+
+message S_ExchangeInfo{
+	optional int32 activitySeq = 1;//活动排期流水号
+	optional int32 integral = 2;//个人积分
+	optional int32 proportion = 3;//兑换比例   
+}
+message C_Exchange{
+	optional int32 activitySeq = 1;//活动排期流水号
+	optional int32 exchange = 2;//兑换积分
+}
+message S_Exchange{
+	optional int32 result = 1;//0-兑换失败  1-兑换成功
+}
+
+message RankMsg{
+	optional int32 activitySeq = 1;//活动排期流水号
+	optional string playName = 2 ;//玩家名
+	optional int32 integral = 3;//积分
+	optional int32 historyBest = 4;//历史最佳排行
+	optional int32 nowRank = 5;//昨日当前排行
+	optional int32 upOrDown = 6;//排名变更 （等于0-不变  大于0-上升 小于-下降）
+}
+message S_IntegralRankInfo{
+	optional int32 activitySeq = 1;//活动排期流水号
+}
+message C_IntegralRank{
+	optional int32 activitySeq = 1;//活动排期流水号
+	optional int32 type = 2;//排行榜类型 （0-积分   1-赢家）
+}
+message S_IntegralRank{
+	repeated RankMsg rankList = 1; //积分排行列表
+	optional RankMsg rank = 2; //操作玩家信息
+}

@@ -1,0 +1,50 @@
+import "player.proto";
+
+message C_LoginGame { // 登录游戏
+	required int32 userId = 1; //用户标号
+	required string key = 2; // 随机秘钥
+	optional string time = 3; // 时间
+	optional string sign = 4; // 签名
+	optional int32 serverNo = 5; // 服务器编号
+}
+
+
+message S_LoginGame{ // 登录游戏
+	optional int64 serverTime = 1; // 服务器时间
+	optional int32 testSwitch=2; // 外挂开关   1：开启
+	optional PlayerMsg playerMsgs = 3; //拥有的角色信息
+	repeated int32 gameTypes = 4; //已下载游戏类型	
+	repeated BaseGameMsg baseGameMsgs = 5; //游戏类型	
+}
+message BaseGameMsg{
+	optional int32 gameType = 1;//游戏类型
+	optional string gameName = 2;//游戏名字
+	optional int32 iconId = 3;//图标
+	optional int32 tagType = 4;//0:默认  1:最新   2：热推
+}
+
+message C_DeletePlayer{ //删除角色
+	required int64 playerId = 1;// 角色编号
+}
+
+message S_DeletePlayer{ //删除角色
+	required int64 playerId = 1;// 角色编号
+}
+
+message S_ExitGame{ //退出游戏(顶号或封号)
+	optional int32 type = 1; //1-顶号登录  2-掉线  3-结算之后金币不足退出游戏
+}
+
+message S_StopServer{ //停服维护
+	optional int64 endStopTime = 1; //维护结束时间搓
+}
+
+
+
+enum PlayerLoginStatus {
+	IDLE = 1;//空闲
+	LOGIN = 2;//登陆
+	AWAIT =3;//断线重连中
+}
+
+

@@ -1,0 +1,170 @@
+{
+  "id1": {
+    "codeId": 1,
+    "exceptionMsg": "操作失败"
+  },
+  "id2": {
+    "codeId": 2,
+    "exceptionMsg": "网络异常"
+  },
+  "id1000": {
+    "codeId": 1000,
+    "exceptionMsg": "游戏账号有误"
+  },
+  "id1001": {
+    "codeId": 1001,
+    "exceptionMsg": "游戏站点有误"
+  },
+  "id1002": {
+    "codeId": 1002,
+    "exceptionMsg": "账号已经存在"
+  },
+  "id1003": {
+    "codeId": 1003,
+    "exceptionMsg": "创建账号异常"
+  },
+  "id1100": {
+    "codeId": 1100,
+    "exceptionMsg": "账号不存在"
+  },
+  "id1102": {
+    "codeId": 1102,
+    "exceptionMsg": "角色昵称不为空"
+  },
+  "id1103": {
+    "codeId": 1103,
+    "exceptionMsg": "角色昵称为2-7字"
+  },
+  "id1104": {
+    "codeId": 1104,
+    "exceptionMsg": "角色昵称包含敏感字或特殊字符"
+  },
+  "id1106": {
+    "codeId": 1106,
+    "exceptionMsg": "角色昵称已存在"
+  },
+  "id1107": {
+    "codeId": 1107,
+    "exceptionMsg": "角色创建有误"
+  },
+  "id1111": {
+    "codeId": 1111,
+    "exceptionMsg": "玩家不在线"
+  },
+  "id1112": {
+    "codeId": 1112,
+    "exceptionMsg": "金币不足"
+  },
+  "id1115": {
+    "codeId": 1115,
+    "exceptionMsg": "玩家不存在"
+  },
+  "id1800": {
+    "codeId": 1800,
+    "exceptionMsg": "好友已达上限"
+  },
+  "id1801": {
+    "codeId": 1801,
+    "exceptionMsg": "对方好友已达上限"
+  },
+  "id1802": {
+    "codeId": 1802,
+    "exceptionMsg": "双方已是好友"
+  },
+  "id1803": {
+    "codeId": 1803,
+    "exceptionMsg": "不能添加自己为好友"
+  },
+  "id1804": {
+    "codeId": 1804,
+    "exceptionMsg": "申请已达上限"
+  },
+  "id1805": {
+    "codeId": 1805,
+    "exceptionMsg": "玩家拒绝好友申请"
+  },
+  "id1900": {
+    "codeId": 1900,
+    "exceptionMsg": "游戏已下载"
+  },
+  "id1901": {
+    "codeId": 1901,
+    "exceptionMsg": "游戏不存在"
+  },
+  "id1902": {
+    "codeId": 1902,
+    "exceptionMsg": "游戏尚未下载"
+  },
+  "id1903": {
+    "codeId": 1903,
+    "exceptionMsg": "已经投注，不能站起"
+  },
+  "id1904": {
+    "codeId": 1904,
+    "exceptionMsg": "已经满人， 不能坐下"
+  },
+  "id1905": {
+    "codeId": 1905,
+    "exceptionMsg": "没有在赌桌上， 不能投注"
+  },
+  "id1906": {
+    "codeId": 1906,
+    "exceptionMsg": "投注时间已过， 不能投注"
+  },
+  "id2002": {
+    "codeId": 2002,
+    "exceptionMsg": "消息内容过长"
+  },
+  "id2005": {
+    "codeId": 2005,
+    "exceptionMsg": "消息内容为空"
+  },
+  "id2008": {
+    "codeId": 2008,
+    "exceptionMsg": "语音已过期"
+  },
+  "id1116": {
+    "codeId": 1116,
+    "exceptionMsg": "抢庄成功，已上庄"
+  },
+  "id1117": {
+    "codeId": 1117,
+    "exceptionMsg": "已抢庄，等待上庄"
+  },
+  "id1118": {
+    "codeId": 1118,
+    "exceptionMsg": "玩家人数不足"
+  },
+  "id1907": {
+    "codeId": 1907,
+    "exceptionMsg": "投注额不能小于0"
+  },
+  "id1908": {
+    "codeId": 1908,
+    "exceptionMsg": "已超过最大投注额"
+  },
+  "id1119": {
+    "codeId": 1119,
+    "exceptionMsg": "您已在房间中"
+  },
+  "id1909": {
+    "codeId": 1909,
+    "exceptionMsg": "您是庄家，不能站起"
+  },
+  "id1910": {
+    "codeId": 1910,
+    "exceptionMsg": "请在投注阶段进行抢庄"
+  },
+  "id3001": {
+    "codeId": 3001,
+    "exceptionMsg": "签到成功，获得签到积分"
+  },
+  "id3002": {
+    "codeId": 3002,
+    "exceptionMsg": "积分不足，无法进行补签"
+  },
+  "id3003": {
+    "codeId": 3003,
+    "exceptionMsg": "未完成游戏投注无法进行签到"
+  }
+}

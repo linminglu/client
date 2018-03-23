@@ -1,0 +1,56 @@
+{
+  "id1": {
+    "gameType": 1,
+    "gameName": "同花顺",
+    "iconId": 1,
+    "tagType": 2,
+    "des": "这是一个同花顺的游戏",
+    "gameState": 1,
+    "gameTag": "tonghuashun"
+  },
+  "id2": {
+    "gameType": 2,
+    "gameName": "龙虎斗",
+    "iconId": 2,
+    "tagType": 1,
+    "des": "这是一个龙虎斗游戏",
+    "gameState": 1,
+    "gameTag": "longhudou"
+  },
+  "id3": {
+    "gameType": 3,
+    "gameName": "二八杠",
+    "iconId": 3,
+    "tagType": 1,
+    "des": "这是一个二八杠游戏",
+    "gameState": 1,
+    "gameTag": "erbagang"
+  },
+  "id4": {
+    "gameType": 4,
+    "gameName": "小九",
+    "iconId": 4,
+    "tagType": 1,
+    "des": "这是一个小九游戏",
+    "gameState": 1,
+    "gameTag": "xiaojiu"
+  },
+  "id5": {
+    "gameType": 5,
+    "gameName": "牛牛",
+    "iconId": 5,
+    "tagType": 1,
+    "des": "这是一个牛牛游戏",
+    "gameState": 1,
+    "gameTag": "niuniu"
+  },
+  "id6": {
+    "gameType": 6,
+    "gameName": "炸金花",
+    "iconId": 6,
+    "tagType": 1,
+    "des": "这是一个炸金花游戏",
+    "gameState": 1,
+    "gameTag": "zhajinhua"
+  }
+}

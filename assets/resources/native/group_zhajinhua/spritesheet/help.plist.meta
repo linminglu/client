@@ -1,0 +1,56 @@
+{
+  "ver": "1.2.4",
+  "uuid": "2cffdeb6-54f9-408d-b7d8-88594e83d6d7",
+  "rawTextureUuid": "5a49417c-a5b2-440e-8443-f85ac0c2eeb4",
+  "size": {
+    "width": 1429,
+    "height": 341
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "icon_game_0.png": {
+      "ver": "1.0.3",
+      "uuid": "a9213bba-5e5f-4deb-a0e0-67fef89ca197",
+      "rawTextureUuid": "5a49417c-a5b2-440e-8443-f85ac0c2eeb4",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 683,
+      "trimY": 2,
+      "width": 744,
+      "height": 334,
+      "rawWidth": 744,
+      "rawHeight": 334,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    },
+    "icon_game_1.png": {
+      "ver": "1.0.3",
+      "uuid": "eb0fe590-7638-416f-9baf-948e5f717d41",
+      "rawTextureUuid": "5a49417c-a5b2-440e-8443-f85ac0c2eeb4",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 2,
+      "trimY": 2,
+      "width": 678,
+      "height": 337,
+      "rawWidth": 678,
+      "rawHeight": 337,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

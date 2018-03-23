@@ -1,0 +1,23 @@
+message IntLongEntry { // 登录游戏
+	optional int32 key = 1;//键
+	optional int64 value = 2;//值
+}
+
+message StringLongEntry { // 字符串long键值对
+	optional string key = 1;//键
+	optional int64 value = 2;//值
+}
+
+	message MultipleMessageObjectPackage{
+		repeated bytes messageObjectBytes = 1;//消息报文
+		optional int64 seq =2;//消息序列号
+		optional int64 timeStamp = 3;//发送时间戳		
+	}
+	
+	message C_MultipleMessageObjectPackage{
+		optional MultipleMessageObjectPackage mesage = 3;//消息
+	}
+	
+	message S_MultipleMessageObjectPackage{
+		optional MultipleMessageObjectPackage mesage = 3;//消息
+	}

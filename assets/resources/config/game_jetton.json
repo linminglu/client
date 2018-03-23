@@ -1,0 +1,62 @@
+{
+  "id1": {
+    "jettonId": 1,
+    "jettonNum": 5,
+    "jettonImg": "jetton_btn_5",
+    "jettonIcon": "jetton_icon_5"
+  },
+  "id2": {
+    "jettonId": 2,
+    "jettonNum": 10,
+    "jettonImg": "jetton_btn_10",
+    "jettonIcon": "jetton_icon_10"
+  },
+  "id3": {
+    "jettonId": 3,
+    "jettonNum": 25,
+    "jettonImg": "jetton_btn_25",
+    "jettonIcon": "jetton_icon_25"
+  },
+  "id4": {
+    "jettonId": 4,
+    "jettonNum": 50,
+    "jettonImg": "jetton_btn_50",
+    "jettonIcon": "jetton_icon_50"
+  },
+  "id5": {
+    "jettonId": 5,
+    "jettonNum": 100,
+    "jettonImg": "jetton_btn_100",
+    "jettonIcon": "jetton_icon_100"
+  },
+  "id6": {
+    "jettonId": 6,
+    "jettonNum": 300,
+    "jettonImg": "jetton_btn_300",
+    "jettonIcon": "jetton_icon_300"
+  },
+  "id7": {
+    "jettonId": 7,
+    "jettonNum": 500,
+    "jettonImg": "jetton_btn_500",
+    "jettonIcon": "jetton_icon_500"
+  },
+  "id8": {
+    "jettonId": 8,
+    "jettonNum": 1000,
+    "jettonImg": "jetton_btn_1000",
+    "jettonIcon": "jetton_icon_1000"
+  },
+  "id9": {
+    "jettonId": 9,
+    "jettonNum": 2500,
+    "jettonImg": "jetton_btn_2500",
+    "jettonIcon": "jetton_icon_2500"
+  },
+  "id10": {
+    "jettonId": 10,
+    "jettonNum": 5000,
+    "jettonImg": "jetton_btn_5000",
+    "jettonIcon": "jetton_icon_5000"
+  }
+}

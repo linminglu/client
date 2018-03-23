@@ -1,0 +1,66 @@
+
+message PlayerMsg {  //玩家本人信息
+	required int64 playerId = 1;// 角色编号
+	required string playerName = 2; // 角色名称
+	optional int32 sex = 3; // 角色性别
+	optional int32 gold = 4; // 金币
+	optional int32 severNo=5; // 服务器编号
+	optional int32 usableGold = 6; // 可用金币
+	optional int32 userId = 7; //用户标号
+	optional int64 loginTime = 8; //最近登录时间	
+	optional int32 iconId = 9; //头像编号
+	optional string loginIP = 10;  //登录IP
+	optional int32 updateFlag = 11;  //1-名称，性别都可以修改   2-只可以修改性别  3-只可以修改名称  4-都不可以修改
+}
+message OtherPlayerMsg { //他人信息
+	optional int32 severNo = 1; //服务器编号
+	optional int64 playerId = 2; //角色编号
+	optional string playerName = 3; // 角色名称	
+	optional int32 sex = 4; // 角色性别
+	optional int32 iconId = 5; //头像编号
+	optional int64 exitTime = 6; 	//角色离线时间(为0则在线）
+	optional int32 userId = 7; //用户标号
+}
+
+message C_SetIsAcceptChat{ //设置是否接受陌生人信息
+	optional int32 state = 1; 	//0 : 接受（默认为0）, 1: 拒绝	
+}
+message S_SetIsAcceptChat{ //设置是否接受陌生人信息
+	optional int32 state = 1; 	//0 : 接受（默认为0）, 1: 拒绝	
+}
+
+message C_GetPlayerOptional{ //设置信息	
+}
+message S_GetPlayerOptional{ //设置信息
+	optional int32 isAcceptChat = 1;  //是否接受陌生人信息 0 : 接受（默认为0）, 1: 拒绝	
+	optional int32 isAcceptApply = 2; //是否接受好友申请 0 : 接受（默认为0）, 1: 拒绝
+}
+
+message C_ShowPlayer{ // 查询玩家信息
+	optional int32 type = 1; //1：角色编号  2：角色名称		
+	required string value = 2; // 输入值
+}
+
+message S_ShowPlayer{ // 查询玩家信息返回
+	optional OtherPlayerMsg playerMsg = 1; //玩家信息
+}
+
+message C_UpdateIconId{
+	optional int32 iconId = 1; //头像编号
+	optional string playerName = 2; // 角色名称
+	optional int32 sex = 3; // 角色性别
+	optional int32 updateFlag = 4;  //1-名称，性别都可以修改   2-只可以修改性别  3-只可以修改名称  4-都不可以修改
+}
+message S_UpdateIconId{
+	optional int32 iconId = 1; //头像编号
+	optional string playerName = 2; // 角色名称
+	optional int32 sex = 3; // 角色性别
+	optional int32 updateFlag = 4;  //1-名称，性别都可以修改   2-只可以修改性别  3-只可以修改名称  4-都不可以修改
+}
+
+message S_SynGold{
+	optional int32 gold = 1; //添加金币回显
+	optional int32 usableGold = 2; // 可用金币
+}
+
+

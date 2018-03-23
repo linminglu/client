@@ -1,0 +1,26 @@
+import  "activitydata.proto";
+import "commondata.proto";
+
+message C_Activity_GetAvailableActivityList {
+}
+
+message S_Activity_GetAvailableActivityList {
+	repeated ActivityInfo availableActivityInfos = 1; //当前可用活动列表
+}
+
+message C_Activity_GetSpecificActivity {
+	optional int32 activitySeq = 1;//目标活动
+}
+
+message S_Activity_GetSpecificActivity {
+	optional ActivityInfo availableActivityInfos = 1; //当前可用活动列表
+}
+
+
+message C_Activity_FetchSpecificActivityReward {
+	optional ActivityFetchObject fetchReq = 1;//目标活动领奖请求
+}
+
+message S_Activity_FetchSpecificActivityReward {
+	optional ActivityFetchResultObject result = 1; //当前可用活动列表
+}

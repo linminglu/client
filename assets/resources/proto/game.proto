@@ -1,0 +1,313 @@
+import "player.proto";
+import "commondata.proto";
+
+message BettingMsg{ //投注信息
+	optional int32 posId = 1;          // 投注位置编号
+	optional int32 money = 2;          // 投注金额
+}
+
+message ResultMsg{ //赌桌区域信息
+	optional int32 posId = 1;          // 投注位置编号 1：庄家
+	repeated int32 numbers = 2;        // 牌号码组
+	optional int32 cardType = 3;       // 牌类型  
+	optional int32 result = 4;         //  -1：输  0：和  1：赢
+}
+
+message RoomPlayerMsg { //他人信息
+	optional int64 playerId = 1; //角色编号
+	optional string playerName = 2; // 角色名称	
+	optional int32 iconId = 3; //头像编号
+	optional int32 banker = 4; //1-庄家  0-闲家
+	optional int32 userId = 5; //用户标号
+	optional int32 remainBanker = 6; //连庄标记  (0-不连庄   1-连庄)
+}
+
+message C_DownloadGame{ //下载游戏 （下载完成通知服务端）
+	optional int32 gameType = 1;          // 游戏类型
+}
+
+message C_EnterGame{ //进入游戏
+	optional int32 gameId = 1;          // 游戏编号
+}
+
+message S_EnterGame{ //获取房间内信息
+	optional int32 gameId = 13;          // 游戏编号
+	optional int32 gameType = 14;		//游戏类型
+	optional PlayerMsg playerMsgs = 15; //拥有的角色信息
+	repeated LogMsgPackage gameLogList = 16;    // 游戏记录
+	optional int32 totalNum = 17;//总页数
+	optional int32 totalMoney = 1;          // 总投注金额
+	repeated RoomPlayerMsg players = 2;    // 赌桌上玩家列表
+	optional int32 state = 3;         // 0:投注阶段  1：开奖阶段	
+	optional int64 endTime = 4;       // 结束时间搓
+	repeated ResultMsg resultMsg = 5; //各赌桌区域信息
+	repeated BettingMsg totalsList = 6; //区域总投注金额
+	repeated BettingMsg selfTotalsList = 18; //自身投注金额
+	optional int32 openTotalTime = 7;      //开奖阶段总时间
+	repeated int32 cardTotals = 8;     //20个号码球	
+	repeated RegionOdd regionOdds = 9;     //区域投注赔率
+	optional int32 playGame = 10;  //1-坐下(默认)       0-站起   
+	optional int64 currentTime = 11; //当前时间戳
+	optional string awardNo = 12; //期号
+	optional string lotterySourceName = 19;//彩票来源
+	optional string lotterySourceUrl = 28;//彩票来源网址
+	optional string lastAwardNo = 20;//上一期开奖期号
+	optional LotteryLogMsg cardDetail = 21;//开奖细节
+	repeated StringLongEntry rankList = 22;//排行榜
+	optional int32 lowestBettingPerRound = 23;//每局最小投注数
+	optional int32 maxBettingPerRound = 24;//每局最大投注数
+	optional int32 lowestBettingPerAct = 25;//每项最小投注数
+	optional int32 maxBettingPerAct = 26;//每项最大投注数
+	optional int32 lowestRobBankGoldRequired = 27;//最小抢庄所需金额
+}
+
+message LogMsgPackage{
+	repeated GameLogMsg gameLogList = 16;    // 游戏记录
+}
+
+message LotteryLogMsg{
+	optional int32 feng = 1;//风
+	optional string fengCards = 8;
+	optional int32 yu = 2;//雨
+	optional string yuCards = 9;
+	optional int32 lei = 3;//雷
+	optional string leiCards = 10;
+	optional int32 bank = 4;//庄
+	optional string bankCards = 11;
+	optional int32 fengResult = 5;//风的输赢
+	optional int32 yuResult = 6;//雨的输赢
+	optional int32 leiResult = 7;//雷的输赢
+}
+
+message C_PlayGame{ //坐下站起
+	optional int32 state = 1;          // 0：站起  1：坐下
+}
+
+message S_PlayGame{ //坐下站起返回
+	optional int32 state = 1;          // 0：站起  1：坐下
+}
+
+message S_AddRoomPlayer{ // 添加赌桌上玩家
+	optional RoomPlayerMsg players = 1;    	
+}
+
+message C_RemoveRoomPlayer{//移除赌桌上玩家
+
+}
+
+message S_RemoveRoomPlayer{  // 移除赌桌上玩家
+	optional int64 playerId = 1;
+}
+
+message C_Betting{ //确定投注
+	repeated BettingMsg bettingMsgList = 1;
+}
+
+
+message S_Betting{ //投注成功
+	optional int32 money = 1;          // 玩家剩余金额
+	repeated BettingMsg bettingMsgList = 2; //当次投注信息
+}
+
+message S_SynMoney{ //同步投注金额
+	optional int32 totalMoney = 1;       // 总投注金额
+	repeated BettingMsg totalsList = 2; //区域总投注金额
+}
+
+message C_CancelBetting{ //取消投注
+	
+}
+
+message S_CancelBetting{ //取消投注返回
+	
+}
+
+message S_StartBetting{ //开始投注
+	optional int64 endTime = 1;       // 投注结束时间搓	
+	optional int64 currentTime = 2; //当前时间戳	
+	optional string awardNo = 3; //期号
+	optional string lastAwardNo = 20;//上一期开奖期号
+	optional LotteryLogMsg cardDetail = 21;//开奖细节
+	repeated StringLongEntry rankList = 22;//排行榜
+}
+
+message S_StartAward{ //开始发牌
+	optional int64 endTime = 1;       // 开奖结束时间搓
+	repeated ResultMsg resultMsg = 2; //各赌桌区域信息
+	repeated int32 cardTotals = 3;     //20个号码球		
+}
+message S_EndBetting{ //结束投注
+	optional int64 endTime = 1;       // 开奖结束时间搓
+}
+
+message C_RobBanker{ //玩家抢庄
+	optional int32 rob = 1; //0--下庄 1--抢庄  
+}
+message S_RobBanker{ //抢庄返回
+	optional int32 rob = 1; //1--抢庄成功  2--排队中  3--金额不足 4--下庄成功 5--不连庄
+	optional int64 playerId = 2;//庄家ID
+}
+
+message C_QuiteGame{  //退出游戏
+}
+message S_QuiteGame{  //退出游戏返回 
+	optional int64 playerId = 1;
+}
+
+message RegionOdd{
+	optional int32 region = 1; //区域
+	optional int32 odd = 2;//赔率
+}
+
+message S_WinOrLose{//一局总的输赢情况
+	optional int32 result = 1;//大于0-赢   等于0-和    小于0-输
+	optional int64 playerId = 2;//玩家ID
+	optional int32 gameType = 3;//游戏类型
+}
+
+message S_UpdatePlayers{
+	repeated RoomPlayerMsg players = 1;    // 更新的玩家列表
+}
+
+message C_AwardLog{
+	optional int32 gameId = 1;//场次ID
+	optional int64 beginDate = 2;//查询条件：开始时间
+	optional int64 endDate = 3;//查询条件：结束时间
+	optional int32 dateUnit = 4;//查询条件：时间单位（0-全部 1-最新）
+	optional int32 pageNum = 5;//查询条件：第几页
+}
+message AwardLogMsg{
+	optional string awardNo = 1;//期号
+	optional string numbersStr = 2;//开奖号码组
+	optional string cardStr = 3;//分配号码球
+	optional string fengCardStr = 4;//风号码球
+	optional string yuCardStr = 5;//雨号码球
+	optional string leiCardStr = 6;//雷号码球
+	optional string bankCardStr = 7;//庄号码球
+}
+message S_AwardLog{
+	repeated AwardLogMsg awardLogList = 1;    // 历史开奖记录
+	optional int32 totalNum = 2;//总页数
+}
+
+message C_BankLog{
+	optional int32 gameId = 1;//场次ID
+	optional int64 beginDate = 2;//查询条件：开始时间
+	optional int64 endDate = 3;//查询条件：结束时间
+	optional int32 dateUnit = 4;//查询条件：时间单位（0-全部 1-最新）
+	optional int32 pageNum = 5;//查询条件：第几页
+}
+message BankLogMsg{
+	optional string awardNo = 1;//期号
+	repeated BettingMsg totalsList = 2;    // 区域总投注记录
+	optional int32 winOrLose = 3;//输赢金额
+	optional int32 pumpMoney = 4;//总抽水
+}
+message S_BankLog{
+	repeated BankLogMsg bankLogList = 1;    // 庄家记录
+	optional int32 totalNum = 2;//总页数
+}
+
+message C_GameLog{
+	optional int32 gameId = 1;//场次ID
+	optional int64 beginDate = 2;//查询条件：开始时间
+	optional int64 endDate = 3;//查询条件：结束时间
+	optional int32 dateUnit = 4;//查询条件：时间单位（0-全部 1-待开奖 2-已开奖 3-已撤单）
+	optional int32 pageNum = 5;//查询条件：第几页
+}
+message GameLogMsg{
+	optional int64 orderId = 1; //订单号
+	optional string awardNo = 2;//期号
+	optional int32 posId = 3;//投注项
+	optional int32 cardType = 4;//牌型
+	optional int32 totalBetting = 5;//投注额
+	optional int32 money = 6;//输赢额
+	optional int32 odds = 7;//赔率
+	optional int32 pumpMoney = 8;//抽水值
+	optional string createTime = 9; //时间
+	optional int32 result = 10; //结果
+	optional int32 state = 11; //状态
+}
+message S_GameLog{
+	repeated GameLogMsg gameLogList = 1;    // 游戏记录
+	optional int32 totalNum = 2;//总页数
+}
+
+message S_WinRankList{
+	repeated StringLongEntry rankList = 22;//排行榜
+}
+
+message C_CostLog{
+	optional int32 gameId = 1;//场次ID
+	optional int64 beginDate = 2;//查询条件：开始时间
+	optional int64 endDate = 3;//查询条件：结束时间
+	optional int32 dateUnit = 4;//查询条件：时间单位（0-全部 1-最新）
+	optional int32 pageNum = 5;//查询条件：第几页
+}
+message CostLogMsg{
+	optional int64 orderId = 1; //订单号
+	optional int32 money = 2;//操作金额
+	optional int32 beforeMoney = 3;//操作前金额
+	optional int32 afterMoney = 4;//操作后金额
+	optional int32 type = 5;//类型
+	optional string createTime = 6; //时间
+	optional string remark = 7;//备注
+	
+}
+message S_CostLog{
+	repeated CostLogMsg costLogList = 1;    // 账变记录
+	optional int32 totalNum = 2;//总页数
+}
+
+message C_PersonalReport{
+	optional int32 gameId = 1;//场次ID
+	optional int64 beginDate = 2;//查询条件：开始时间
+	optional int64 endDate = 3;//查询条件：结束时间
+	optional int32 dateUnit = 4;//查询条件：时间单位（0-按日 1-按月）
+	optional int32 pageNum = 5;//查询条件：第几页
+}
+message PersonalReportMsg{
+	optional string createTime = 1; //日期
+	optional int32 totalPosId = 2;//投注次数
+	optional int32 totalBetting = 3;//投注金额 
+	optional int32 pumpMoney = 4;//抽水金额
+	optional int32 winCount = 5;//赢单量
+	optional int32 loseCount = 6; //输单量
+	optional int32 sameCount = 7;//和单量
+	optional int32 winMoney = 8;//赢总额
+	optional int32 loseMoney = 9;//输总额
+	
+}
+message S_PersonalReport{
+	repeated PersonalReportMsg personalReportList = 1;    // 个人报表记录
+	optional int32 totalNum = 2;//总页数
+}
+
+message C_TransferRecord{
+	optional int64 beginDate = 1;//查询条件：开始时间
+	optional int64 endDate = 2;//查询条件：结束时间
+	optional int32 pageNum = 3;//查询条件：第几页
+}
+message TransferRecordMsg{
+	optional int64 orderId = 1; //订单号
+	optional int32 type = 2;//类型（0-转入 1-转出）
+	optional int32 applyMoney = 3;//申请金额
+	optional int32 poundageMoney = 4;//手续费
+	optional int32 actualMoney = 5;//实际金额
+	optional int32 beforeMoney = 6; //交易前金额
+	optional int32 afterMoney = 7;//交易后金额
+	optional string createTime = 8;//交易时间
+	optional int32 state = 9;//状态(0-待充 1-已充)
+}
+message S_TransferRecord{
+	repeated TransferRecordMsg transferRecordList = 1;    // 转账记录
+	optional int32 totalNum = 2;//总页数
+}
+
+
+enum LotteryProgressStatus {
+	AVAILABLE = 1;//可投注
+	END = 2;//结束投注
+	REVEAL =3;//已开奖
+	UNAVAILABLE = 4;//不可用
+}
