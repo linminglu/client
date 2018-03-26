@@ -13,12 +13,25 @@ const outDefIp = "47.75.6.136"
 const outDefPort = 8000
 
 export default class HttpRequestMgr {
-    // public static instance: HttpRequestMgr = new HttpRequestMgr();
-    public static getInstance() {
-        return new HttpRequestMgr()
-    }
+
+    public static instance: HttpRequestMgr = null;
     private xmlHttp: XMLHttpRequest = null;
 
+
+    private constructor() {
+        if(this.xmlHttp == null){
+            this.xmlHttp = new XMLHttpRequest();
+        }
+    }
+
+    public static getInstance() {
+        if(this.instance == null){
+            return new HttpRequestMgr()
+        }else{
+            return this.instance
+        }
+    }
+  
     netObj = {
         ip: defIp,
         port: defPort
@@ -35,12 +48,7 @@ export default class HttpRequestMgr {
                 this.netObj = FuncUtil.parseIpPort(this.netObj.ip, this.netObj.port);
             }
         }
-
         return this.netObj
-    }
-    
-    private constructor() {
-        this.xmlHttp = new XMLHttpRequest();
     }
 
     public xmlHttpRequestLogin(userName, passWord, tourist, time, callBack: Function, timeOutCallBack: Function = null) {
@@ -65,11 +73,9 @@ export default class HttpRequestMgr {
         this.xmlHttp.open("POST", url, true);        //POST GET
         // this.xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
         this.xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        
         this.xmlHttp.send();
-        this.xmlHttp.timeout = 2000;
-        this.xmlHttp.ontimeout = timeOutCallBack()
-
+        this.xmlHttp.timeout = 8000;
+        this.xmlHttp.ontimeout = timeOutCallBack();
         // new File()
         // let reader = new FileReader()
         // new Blob()
@@ -78,7 +84,6 @@ export default class HttpRequestMgr {
         // const blobUrl = URL.createObjectURL(blob);
         // const audio = new Audio(blobUrl);
         // audio.play();
-
         // new FormData()
     }
 

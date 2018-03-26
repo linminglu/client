@@ -27,10 +27,10 @@ export class SignModel extends BaseModel {
         let month = todayDate.getMonth() + 1;
         let year = todayDate.getFullYear();
         let dateweek = wodrid + "" + year + "" + month + "" + date + "";
-        let Signed = cc.sys.localStorage.getItem("SIGNADAY")
- 
+        let signstr="SIGNADAY"+wodrid;
+        let Signed = cc.sys.localStorage.getItem(signstr)
         if (dateweek != Signed) {
-            cc.sys.localStorage.setItem("SIGNADAY", dateweek)
+            cc.sys.localStorage.setItem(signstr, dateweek)
             return true
         }
         return false

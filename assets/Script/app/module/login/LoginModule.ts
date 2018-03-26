@@ -44,12 +44,20 @@ export class LoginModule extends BaseModule {
         LoginModule.instance = null;
     }
 
-    public static instance : LoginModule = new LoginModule()
+    private static instance : LoginModule = null
+
+    public static getInstance(){
+        if(!this.instance){
+            this.instance = new LoginModule();
+        }
+        return this.instance
+    }
+
 
     private constructor() {
         super();
 
-        this.model = LoginModel.instance
+        this.model = LoginModel.getInstance()
         // this.controller = LoginController.instance
         this.view = new LoginView();
     }

@@ -44,7 +44,7 @@ export default class ServeItem extends cc.Component {
     touchendCallBack() {
         this.sprServeBg.node.active = false
 
-        LoginModel.instance.setCurServerData(this.data)
+        LoginModel.getInstance().setCurServerData(this.data)
     }
 
     updateListView(data) {

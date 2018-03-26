@@ -6,6 +6,7 @@ import { ActivityModel } from "../model/ActivityModel"
 import { EmitterManager as Emitter } from "../../../common/manager/EmitterManager";
 import { EmitterCfg } from "../../../../app/config/EmitterConfig";
 import { MainController } from "../../main/controller/MainController"
+import ProtoMgr from "../../../network/ProtoMgr"
 export class ActivityController extends BaseController {
     public static instance: ActivityController = new ActivityController()
 
@@ -29,11 +30,23 @@ export class ActivityController extends BaseController {
         
         MainController.instance.C_Activity_FetchSpecificActivityReward(msgName, msgData);
     }
+    S_DayCompleteInfo(msg){
+       // console.log("ssss=====sssssssssssssssss=====        ",msg)
+        ProtoMgr.parseMsgData("activitydata", "S_DayCompleteInfo", msg.availableActivityInfos.activityContent, function (data) {
+            
+            ActivityModel.instance.setDayCompleteInfo(data)
+                             
+        })
+    }
+    S_Activity_GetSpecificActivity(msg){       
+        
+        let activityType = 0;
+        activityType = msg.availableActivityInfos.activityType
+        if (activityType == 2) {   //积分领取更新
+            
+            this.S_DayCompleteInfo(msg)
+        }
 
-    S_Activity_GetSpecificActivity(mag){
-        
-        
-                console.log("~~~~~~~~~~~~~~~~~~~~~~活动刷新======",mag)
                 
     }
     S_DayActive(mag){

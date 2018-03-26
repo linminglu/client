@@ -97,8 +97,7 @@ export default class LoginLayout extends cc.Component {
             // FuncUtil.delayFunc(function () {
                 // self.canSend = true
             // }, 0.5, self.node)
-
-            Ctr.instance.confirmLoginFunc(self.accountStr, self.passwordStr)
+            Ctr.getInstance().confirmLoginFunc(self.accountStr, self.passwordStr)
 
             FuncUtil.delayFunc(function() {
                 self.showConfirmLoginCallBack()

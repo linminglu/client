@@ -17,7 +17,7 @@ export class ActivityModel extends BaseModel {
     S_Activity_FetchSpecificActivityReward : "activity", //获取指定活动奖励请求结果*/
     setActivityList(msg){
         this.actitvityList = msg;
-        console.log( this.actitvityList );
+        console.log("活动列表======", this.actitvityList );
         if(this.actitvityList.length > 0){
             if( this.actitvityList[0].state == 1){
                 Emitter.fire(EmitterCfg.ACT_REDDIAN,"newRed",true)   //大厅活动红点
@@ -25,6 +25,16 @@ export class ActivityModel extends BaseModel {
         }
         this.changedModel("ACTLIST_DATA",this.actitvityList)
     }
+    setDayCompleteInfo(msg){ 
+
+        if( msg.state == 1){
+            Emitter.fire(EmitterCfg.ACT_REDDIAN,"newRed",true)   //大厅活动红点
+        }
+        this.actitvityList[0] = msg;     //刷新每日积分
+       // console.log("@@@@@@@@@@@@@@@@@@@改变@@@@@@@@@@@@@@@@@@@")
+        this.changedModel("ACTLIST_DATA",this.actitvityList)
+    }
+
     getActivityList(){
         return this.actitvityList
     }

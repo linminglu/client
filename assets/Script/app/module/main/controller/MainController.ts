@@ -358,7 +358,7 @@ export class MainController extends BaseController {
 
         if (msg.result.activitySeq == SignModel.instance.getsignrid()) {
             SignController.instance.S_SignIn(msg)
-        } else if (msg.result.activitySeq == ActivityModel.instance.getActivitySeq(0)) {  ///每日积分奖励
+        } else if (msg.result.activitySeq == ActivityModel.instance.getActivitySeq(0)) {  ///每日积分奖励-领取
 
             ActivityController.instance.S_DayActive(msg)
 

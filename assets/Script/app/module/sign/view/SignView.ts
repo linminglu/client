@@ -96,6 +96,9 @@ export default class SignView extends BaseView {
     lblNumberOfCheck() {
 
         let SignInInfo = Model.instance.getSignInInfo()
+        cc.log("---------------------------------------------------")
+        cc.log(SignInInfo)
+        cc.log("---------------------------------------------------")
         if (SignInInfo == null) {
             this.lblNumberOfChecknull();
             return;
@@ -110,7 +113,7 @@ export default class SignView extends BaseView {
         let integral = SignInInfo.integral
         let value = SignInInfo.count
         let consume = SignInInfo.consume
-        let curMonthDays = 24
+        let curMonthDays = SignInInfo.continueDay
         let last = curMonthDays - value
 
         this.node.getChildByName("lblAccumulated").getComponent(cc.Label).string = "您需完成一局游戏才可签到（补签消耗" + consume + "活动积分）";

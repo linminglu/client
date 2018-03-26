@@ -205,11 +205,9 @@ export default class BetJetton extends cc.Component {
     //重复下注,暂时修改
     public repeatBetJetton(eventName: string, betAreaJetton) {  
         let self = this
-
+        let i = 0 
         self.schedule(function() {  
-            let i = 0 
             let jettonNum = betAreaJetton[i]
-             
             let dataObj = self.resolverData()
             let beginPos = dataObj.beginPos
             let endPos = dataObj.endPos
@@ -225,16 +223,13 @@ export default class BetJetton extends cc.Component {
 
             self.repBetJettonNum += jettonNum
             if (i == betAreaJetton.length - 1) {
-               
+                self.updateJettonNum(self.repBetJettonNum + self.betJettonNum)
             }
-            self.updateJettonNum(self.repBetJettonNum + self.betJettonNum)
             i++
-        }, 0.1, betAreaJetton.length-1);  
-
+        }, 0.3*i+0.2, betAreaJetton.length-1);  
     }
 
-
-        // //重复下注
+        // //重复下注，下面是原来的代码
         // public repeatBetJetton(eventName: string, betAreaJetton) {  
         //     let self = this
         //     for (let i = 0; i < betAreaJetton.length; i++) {

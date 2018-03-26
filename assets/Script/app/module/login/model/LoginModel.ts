@@ -42,7 +42,14 @@ export class LoginModel extends BaseModel {
         LoginModel.instance = null;
     }
 
-    public static instance: LoginModel = new LoginModel()
+    private static instance: LoginModel = null
+
+    public static getInstance(){
+        if(!this.instance){
+            this.instance = new LoginModel();
+        }
+        return this.instance
+    }
 
     private constructor() {
         super();

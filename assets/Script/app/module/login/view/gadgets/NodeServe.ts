@@ -44,7 +44,7 @@ export default class NodeServe extends cc.Component {
     data = []
 
     onLoad() {
-        LoginModel.instance.registerModelChanged("LOGIN_SELECT_SEVER", this.changeSelectServerFunc, this);
+        LoginModel.getInstance().registerModelChanged("LOGIN_SELECT_SEVER", this.changeSelectServerFunc, this);
         
         Emitter.register(EmitterCfg.LOGIN_HTTP_LOGIN, this.updateSeverDataCallBack, this);
         Emitter.register(EmitterCfg.GLOBAL_NET_WORK_CLOSED, this.netWorkClosed, this)
@@ -57,7 +57,7 @@ export default class NodeServe extends cc.Component {
     }
 
     onDestroy() {
-        LoginModel.instance.unregisterModelChanged("LOGIN_SELECT_SEVER", this.changeSelectServerFunc, this)
+        LoginModel.getInstance().unregisterModelChanged("LOGIN_SELECT_SEVER", this.changeSelectServerFunc, this)
 
         Emitter.unregister(EmitterCfg.LOGIN_HTTP_LOGIN, this.updateSeverDataCallBack, this);
         Emitter.unregister(EmitterCfg.GLOBAL_NET_WORK_CLOSED, this.netWorkClosed, this)
@@ -78,7 +78,7 @@ export default class NodeServe extends cc.Component {
     }
 
     updateServerView() {
-        let data = LoginModel.instance.getCurServerData()
+        let data = LoginModel.getInstance().getCurServerData()
         this.curSerData = data
         this.initView(data)
 
@@ -103,7 +103,7 @@ export default class NodeServe extends cc.Component {
     }
 
     updateListView() {
-        this.data = LoginModel.instance.getServerList()
+        this.data = LoginModel.getInstance().getServerList()
         if (! this.data) {
             return
         }
@@ -135,14 +135,11 @@ export default class NodeServe extends cc.Component {
         let self = this
         if (self.canSend) {
             self.canSend = false
-            
             if (!self.curSerData) {
                 FactoryUtil.createAlertConfirmView(`请选择服务器！`)
-    
                 return
             }
-            
-            LoginController.instance.connectNet(self.curSerData)
+            LoginController.getInstance().connectNet(self.curSerData)
         }
     }
 

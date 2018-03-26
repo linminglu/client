@@ -26,6 +26,6 @@ export default class ChildClass extends SuperClass {
     }
     
     openLoginClickFunc() {
-        LoginModule.instance.show();
+        LoginModule.getInstance().show();
     }
 }

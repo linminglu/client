@@ -26,7 +26,6 @@ export default class NetworkMgr {
         if (!observers) {
             NetworkMgr.listeners[name] = [];
         }
-
         NetworkMgr.listeners[name].push(new Observer(callback, context, name));
     }
 

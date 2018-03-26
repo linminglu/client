@@ -46,11 +46,11 @@ export class LoginController extends BaseController {
                 FactoryUtil.createAlertConfirmView(tipArr[data.result], function () {
                     Emitter.fire(EmitterCfg.LOGIN_CONFIRM_LOGIN, false)
                 })
-                
+
                 return
             }
 
-            LoginModel.instance.setHttpLoginData(data)
+            LoginModel.getInstance().setHttpLoginData(data)
 
             Emitter.fire(EmitterCfg.LOGIN_CONFIRM_LOGIN, false);
             Emitter.fire(EmitterCfg.LOGIN_HTTP_LOGIN, data);
@@ -76,7 +76,7 @@ export class LoginController extends BaseController {
 
         MainModule.instance.show();
 
-        cc.sys.localStorage.setItem("LOGIN_SELECT_SEVER", JSON.stringify(LoginModel.instance.getCurServerData()))
+        cc.sys.localStorage.setItem("LOGIN_SELECT_SEVER", JSON.stringify(LoginModel.getInstance().getCurServerData()))
 
         this.isReconect = true
         this.recMsgState = 0
@@ -98,15 +98,14 @@ export class LoginController extends BaseController {
     }
 
     C_LoginGame() {
-        let httpLoginData = LoginModel.instance.getHttpLoginData()
-        let curServerData = LoginModel.instance.getCurServerData()
+        let httpLoginData = LoginModel.getInstance().getHttpLoginData()
+        let curServerData = LoginModel.getInstance().getCurServerData()
 
         let self = this
         let callFunc = function () {
             if (self.isLogin) {
                 return
             }
-
             self.netWorkMgr.simulateData("S_LoginGame");
         }
 
@@ -118,7 +117,6 @@ export class LoginController extends BaseController {
             sign: httpLoginData.sign,
             serverNo: curServerData.serverNo,
         }
-
         this.netWorkMgr.sendData(msgName, msgData, callFunc);
     }
 
@@ -130,7 +128,7 @@ export class LoginController extends BaseController {
             this.recMsgState = msg.type
 
             Emitter.fire(EmitterCfg.GAME_EXIT_GAME)
-            LoginModule.instance.show()
+            LoginModule.getInstance().show()
             MainModule.instance.hide()
 
             FactoryUtil.createAlertConfirmView("您的账号已在别处登录，请确认是否本人登录！", function () {
@@ -143,7 +141,7 @@ export class LoginController extends BaseController {
 
             FactoryUtil.createAlertConfirmView("账号异常，已下线！", function () {
                 Emitter.fire(EmitterCfg.GAME_EXIT_GAME)
-                LoginModule.instance.show()
+                LoginModule.getInstance().show()
                 MainModule.instance.hide()
                 self.recMsgState = 0
             })
@@ -176,7 +174,14 @@ export class LoginController extends BaseController {
     }
 
     /////////以下必须函数///////////////////////////////////////////////////////
-    public static instance: LoginController = new LoginController()
+    private static instance: LoginController = null
+    
+    public static getInstance(){
+        if(!this.instance){
+            this.instance  = new LoginController()
+        }
+        return this.instance
+    }
 
     destructor() {
         super.destructor();

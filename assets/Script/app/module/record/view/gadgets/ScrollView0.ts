@@ -108,7 +108,7 @@ export default class ScrollView0 extends cc.Component {
 
         // }
 
-        console.log("记录=========================",data)
+        //console.log("记录=========================",data)
 
         for (let i = 0; i < 6; i++) {
             this.recordArr[i].getComponent("LotteryDataItem")._initLblFun();
@@ -118,12 +118,12 @@ export default class ScrollView0 extends cc.Component {
                 this.recordArr[i].getComponent("LotteryDataItem").recordLotteryDataFun(dataArr[i]);
             } else {
                 let prefab = NodePoolMgr.instance.getNood(NodePoolKey.LOTTERY_HISTORY)
-                console.log("prefab====",prefab)
+                //console.log("prefab====",prefab)
                 if (cc.isValid(prefab)) {
                     this.Content.addChild(prefab)
                     prefab.getComponent("LotteryDataItem").recordLotteryDataFun(dataArr[i]);
                     this.recordArr.push(prefab)
-                    console.log("11111111111111111111111111创建了")
+                    //console.log("11111111111111111111111111创建了")
                 } else {
                     ResCfg.loadPrefab(this, "lotteryDataItem", function (self, Prefab) {
                         let cView = cc.instantiate(Prefab);

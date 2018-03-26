@@ -40,7 +40,7 @@ export default class IntegralView extends cc.Component {
     }
     I_dataListChangeFun(eventName: string, data) {
 
-        //console.log(data)  
+        console.log(data)  
 
         ResCfg.loadPrefab(this, "layRankingItem", function (self, Prefab) {
             let curView = null

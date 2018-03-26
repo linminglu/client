@@ -51,7 +51,6 @@ export default class MainNodeTopRight extends cc.Component {
         FuncUtil.delayFunc(function () {
             ExchangeModule.instance.show();
         }, 0.2, self.node)
-        
     }
 
     btnFeedbackCallBack() {

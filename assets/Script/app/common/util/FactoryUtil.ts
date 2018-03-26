@@ -30,7 +30,6 @@ export namespace FactoryUtil {
             let curView = cc.instantiate(prefab);
             LayerManager.topLayer.addChild(curView);
             curView.getComponent("AlertView").updateView(obj)
-
             FuncUtil.addViewAnim(curView);
         }, null, true);
     }

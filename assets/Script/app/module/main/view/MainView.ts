@@ -32,7 +32,7 @@ export default class MainView extends BaseView {
         AudioManager.instance.playMusic("bgm_main")
         //ChatModule.instance.show();
         FuncUtil.delayFunc(function () {
-            LoginModule.instance.hide()
+            LoginModule.getInstance().hide()
         }, 1, this.node)
         MainController.instance.C_Activity_GetAvailableActivityList()
         this.diyiciStatNotice()
@@ -62,9 +62,10 @@ export default class MainView extends BaseView {
         let month = todayDate.getMonth() + 1;
         let year = todayDate.getFullYear();
         let dateweek = wodrid + "" + year + "" + month + "" + date + "";
-        let Signed = cc.sys.localStorage.getItem("NOTICEADAY")
-        if (dateweek != Signed) {
-            cc.sys.localStorage.setItem("NOTICEADAY", dateweek)
+        let noticestr="NOTICEADAY"+wodrid;
+        let noticeed = cc.sys.localStorage.getItem(noticestr)
+        if (dateweek != noticeed) {
+            cc.sys.localStorage.setItem(noticestr, dateweek)
             Notice.instance.show();
         }
 

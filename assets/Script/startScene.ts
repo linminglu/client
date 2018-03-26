@@ -37,18 +37,15 @@ export default class StartScene extends cc.Component {
 
         //创建层管理
         LayerMgr.creatLayer();
-        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+
         if (CC_DEBUG) {
-            console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC")
             if (cc.sys.isNative) {
-                console.log("sAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
                // this.createDebugBtn()
-                this.createMemory()
+               // this.createMemory()
             }
         }
-
-        this.openLoginModuleFunc()
-       
+        this.openLoginModuleFunc()  
     }
 
     createMemory() {
@@ -76,7 +73,7 @@ export default class StartScene extends cc.Component {
     }
 
     update(dt){
-       this.lblMemory.string = `memory：${Math.floor( PlatformMgr.getMemory() / 1024)}MB`
+       //this.lblMemory.string = `memory：${Math.floor( PlatformMgr.getMemory() / 1024)}MB`
     }
     createDebugBtn() {
         let node = new cc.Node()
@@ -125,7 +122,7 @@ export default class StartScene extends cc.Component {
 
     openLoginModuleFunc() {
         FuncUtil.delayFunc(function () {
-            LoginModule.instance.show();
+            LoginModule.getInstance().show();
         }, 1, this.node)
 
     }

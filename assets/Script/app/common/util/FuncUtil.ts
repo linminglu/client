@@ -38,17 +38,17 @@ export namespace FuncUtil {
     export function delayFunc(callback, delayTime, node = null): cc.ActionInterval {
         let delay = cc.delayTime(delayTime)
         let sequence = cc.sequence(delay, cc.callFunc(callback))
-
+    
         if (node == null) {
             node = cc.director.getScene().getChildByName("Canvas")
         }
-
+    
         if (cc.isValid(node)) {
             node.runAction(sequence)
         }
         return sequence
     }
-
+    
     export function setTimeout(callback, delayTime) {
         setTimeout(function () {
             callback()

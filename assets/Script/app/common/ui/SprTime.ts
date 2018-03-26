@@ -28,14 +28,19 @@ export class SprTime extends cc.Component {
     sprNum: any = null
     sprNum1: any = null
 
+    sprAtlas:any = null
+    timeTypes:any  = null
+    callBackFunS:Function = null
+
     endTime = 0
 
     onLoad() {
 
+        this.upSprShowFun(false)
     }
 
     onDestroy() {
-        this.node.stopAllActions()
+        //this.node.stopAllActions()
     }
 
     updelayTimeNodeFun(endTime: number = 5, timeType: string = null, explainName: string = null, callBackFun: Function = null) {
@@ -66,7 +71,7 @@ export class SprTime extends cc.Component {
         if (timeType == null) {
             timeType = "txt_time";
         }
-
+        this.timeTypes = timeType
         if (!cc.isValid(this.node)) return;
         this.sprNum1 = FuncUtil.getNum2Obj(this.surplusTime1)
 
@@ -94,51 +99,91 @@ export class SprTime extends cc.Component {
             if (cc.isValid(self.sprGe)) {
                 self.sprGe.spriteFrame = atlas.getSpriteFrame(`${timeType}-` + `${self.sprNum1.ge}`);
             }
+            self.sprAtlas = atlas //
+            self.callBackFunS = callBackFun
             self.upSprShowFun()
 
-            if (self.surplusTime1 > 0) {
+            // if (self.surplusTime1 > 0) {
 
-                self.timeFun1 = function () {
-                    self.surplusTime1 = self.getTime();
-                    self.sprNum1 = FuncUtil.getNum2Obj(self.surplusTime1);
-                    if (callBackFun) {
-                        callBackFun(self.surplusTime1);
-                        if (self.surplusTime1 == 0) {
-                            self.upSprShowFun(false);
-                        } else {
-                            if (self.sprShi == null) return;
-                            if (self.sprNum1.bai == 0) {
-                                self.sprBai.node.active = false;
-                                if (self.sprNum1.shi == 0) {
-                                    self.sprShi.node.active = false;
-                                }
-                            }
-                            if (self.sprNum1.shi == 0 && self.sprNum1.ge == 0 && self.sprNum1.bai == 0) {
-                                self.upSprShowFun(false);
-                            } else {
-                                if (cc.isValid(self.sprBai)) {
-                                    self.sprBai.spriteFrame = atlas.getSpriteFrame(`${timeType}-` + `${self.sprNum1.bai}`);
-                                }
-                                if (cc.isValid(self.sprShi)) {
-                                    self.sprShi.spriteFrame = atlas.getSpriteFrame(`${timeType}-` + `${self.sprNum1.shi}`);
-                                }
-                                if (cc.isValid(self.sprGe)) {
-                                    self.sprGe.spriteFrame = atlas.getSpriteFrame(`${timeType}-` + `${self.sprNum1.ge}`);
-                                }
-                            }
-                        }
-                    }
+            //     self.timeFun1 = function () {
+            //         self.surplusTime1 = self.getTime();
+            //         self.sprNum1 = FuncUtil.getNum2Obj(self.surplusTime1);
+            //         if (callBackFun) {
+            //             callBackFun(self.surplusTime1);
+            //             if (self.surplusTime1 == 0) {
+            //                 self.upSprShowFun(false);
+            //             } else {
+            //                 if (self.sprShi == null) return;
+            //                 if (self.sprNum1.bai == 0) {
+            //                     self.sprBai.node.active = false;
+            //                     if (self.sprNum1.shi == 0) {
+            //                         self.sprShi.node.active = false;
+            //                     }
+            //                 }
+            //                 if (self.sprNum1.shi == 0 && self.sprNum1.ge == 0 && self.sprNum1.bai == 0) {
+            //                     self.upSprShowFun(false);
+            //                 } else {
+            //                     if (cc.isValid(self.sprBai)) {
+            //                         self.sprBai.spriteFrame = atlas.getSpriteFrame(`${timeType}-` + `${self.sprNum1.bai}`);
+            //                     }
+            //                     if (cc.isValid(self.sprShi)) {
+            //                         self.sprShi.spriteFrame = atlas.getSpriteFrame(`${timeType}-` + `${self.sprNum1.shi}`);
+            //                     }
+            //                     if (cc.isValid(self.sprGe)) {
+            //                         self.sprGe.spriteFrame = atlas.getSpriteFrame(`${timeType}-` + `${self.sprNum1.ge}`);
+            //                     }
+            //                 }
+            //             }
+            //         }
 
 
-                    FuncUtil.delayFunc(function () {
-                        self.timeFun1()
-                    }, 1, self.node)
-                }
+            //         FuncUtil.delayFunc(function () {
+            //             self.timeFun1()
+            //         }, 1, self.node)
+            //     }
 
-                self.timeFun1()
-            }
+            //     self.timeFun1()
+            // }
         });
     }
+    update(dt){
+    //console.log("11111111111118888")
+        if (this.surplusTime1 > 0){
+            this.timeFun2()
+        }
 
+    }
 
+    timeFun2(){
+        this.surplusTime1 = this.getTime();
+        this.sprNum1 = FuncUtil.getNum2Obj(this.surplusTime1);
+        if (this.callBackFunS) {
+            this.callBackFunS(this.surplusTime1);
+            if (this.surplusTime1 == 0) {
+                this.upSprShowFun(false);
+            } else {
+                if (this.sprShi == null) return;
+                if (this.sprNum1.bai == 0) {
+                    this.sprBai.node.active = false;
+                    if (this.sprNum1.shi == 0) {
+                        this.sprShi.node.active = false;
+                    }
+                }
+                if (this.sprNum1.shi == 0 && this.sprNum1.ge == 0 && this.sprNum1.bai == 0) {
+                    this.upSprShowFun(false);
+                } else {
+                    if (cc.isValid(this.sprBai)) {
+                        this.sprBai.spriteFrame = this.sprAtlas.getSpriteFrame(`${this.timeTypes}-` + `${this.sprNum1.bai}`);
+                    }
+                    if (cc.isValid(this.sprShi)) {
+                        this.sprShi.spriteFrame = this.sprAtlas.getSpriteFrame(`${this.timeTypes}-` + `${this.sprNum1.shi}`);
+                    }
+                    if (cc.isValid(this.sprGe)) {
+                        this.sprGe.spriteFrame = this.sprAtlas.getSpriteFrame(`${this.timeTypes}-` + `${this.sprNum1.ge}`);
+                    }
+                }
+            }
+
+    }
+}
 }
