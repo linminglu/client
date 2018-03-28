@@ -423,19 +423,6 @@
             <key>compare/txt_Defeat_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2010,125},{61,33}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{61,33}}</string>
-                <key>sourceSize</key>
-                <string>{61,33}</string>
-            </dict>
-            <key>compare/txt_Defeat_8.png</key>
-            <dict>
-                <key>frame</key>
                 <string>{{1933,1139},{62,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -445,6 +432,19 @@
                 <string>{{0,0},{62,32}}</string>
                 <key>sourceSize</key>
                 <string>{62,32}</string>
+            </dict>
+            <key>compare/txt_Defeat_8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2010,125},{61,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,33}}</string>
+                <key>sourceSize</key>
+                <string>{61,33}</string>
             </dict>
             <key>compare/txt_Defeat_9.png</key>
             <dict>
@@ -553,19 +553,6 @@
             <key>compare/txt_Win_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2010,1},{61,33}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{61,33}}</string>
-                <key>sourceSize</key>
-                <string>{61,33}</string>
-            </dict>
-            <key>compare/txt_Win_8.png</key>
-            <dict>
-                <key>frame</key>
                 <string>{{835,1106},{62,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -575,6 +562,19 @@
                 <string>{{0,0},{62,32}}</string>
                 <key>sourceSize</key>
                 <string>{62,32}</string>
+            </dict>
+            <key>compare/txt_Win_8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2010,1},{61,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,33}}</string>
+                <key>sourceSize</key>
+                <string>{61,33}</string>
             </dict>
             <key>compare/txt_Win_9.png</key>
             <dict>
@@ -1587,7 +1587,7 @@
             <key>size</key>
             <string>{2044,1225}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:113114cda8deb0fb66c0e234b66f0a34:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:7bb3a46d0d18c0d1128cf3d21feec3af:1/1$</string>
             <key>textureFileName</key>
             <string>tonghuashun.png</string>
         </dict>

@@ -28,6 +28,8 @@ export enum NodePoolKey {
     //大厅
     MAIN_ACT, //活动
     MAIN_RANKING, //排行榜 
+
+    TWEEN_MSG_TXT //文本提示
 }
 
 export class NodePoolMgr {
@@ -39,12 +41,10 @@ export class NodePoolMgr {
         this.poolMgrList[key] = new cc.NodePool(key.toString())
     }
 
-
     public putNood(target, key: number) {
         if (this.poolMgrList[key] == null) {
             this.createNodePool(key)
         }
-
         this.poolMgrList[key].put(target)
     }
 
@@ -65,6 +65,7 @@ export class NodePoolMgr {
             if (this.poolMgrList[key]) {
                 this.poolMgrList[key].clear()
                 this.poolMgrList[key] = null
+                //猜想：这里clear后再次调用当前key=null ，不知道会不会异常
             }
         }
     }

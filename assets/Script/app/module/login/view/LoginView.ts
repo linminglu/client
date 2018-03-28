@@ -8,7 +8,6 @@ import { AnimationMgr } from "../../../common/manager/AnimationMgr";
 import NetworkMgr from "../../../network/NetworkMgr"
 import {ProtoConfig, MessageConfig} from "../../../config/ProtoConfig"
 
-import {TweenMsgView} from "../../../common/ui/TweenMsgView"
 const { ccclass, property } = cc._decorator;
 
 @ccclass

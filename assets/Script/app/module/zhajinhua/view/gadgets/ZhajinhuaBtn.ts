@@ -19,6 +19,7 @@ export default class ZhajinhuaBtn extends GameBtn {
     }
 
     btnSettingCallBack() {
+        cc.director.loadScene("game2");
         SettingModule.instance.show("main")
     }
 }

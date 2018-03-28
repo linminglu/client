@@ -39,13 +39,14 @@ export class LayerManager {
 
     public static popView(viewName: string, action = null, noAnim = false) {
         let curView = LayerManager.layerArr[viewName];
-        
         if (cc.isValid(curView)) {
             let delayFunc = function () {
                 // curView.removeAllChildren()
                 // curView.removeFromParent()
-                
-                curView.destroy();
+               curView.destroy();
+                //resources/native/gameres/layout/view/loginView.prefab' does not exist.
+
+               // cc.loader.releaseRes(path,cc.Prefab);
                 LayerManager.layerArr[viewName] = null
             }
 
@@ -86,7 +87,6 @@ export class LayerManager {
 
                 curView.runAction(action);
             }
-
         }, isGroup, false);
     }
 

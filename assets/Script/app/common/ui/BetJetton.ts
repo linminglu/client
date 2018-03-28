@@ -6,7 +6,6 @@ import { MainController } from "../../module/main/controller/MainController"
 import { GameCollectManager as GameColMgr } from "../manager/GameCollectManager"
 import { LonghudouModel } from "../../module/longhudou/model/LonghudouModel"
 import { TonghuashunModel } from "../../module/Tonghuashun/model/TonghuashunModel"
-import { TweenMsgView } from "../ui/TweenMsgView"
 import { GameManager } from "../../../app/common/manager/GameManager"
 import { NodePoolMgr, NodePoolKey } from "../manager/NodePoolMgr"
 import { AudioManager } from "../manager/AudioManager"
@@ -86,7 +85,7 @@ export default class BetJetton extends cc.Component {
             for (let prefab of this.node.children) {
                 FuncUtil.delayFunc(function () {
                     prefab.destroy()
-                }, 0.1 * i, this.node)
+                }, 0.01 * i, this.node)
                 i++
             }
         }
@@ -123,8 +122,7 @@ export default class BetJetton extends cc.Component {
         }, 1.5, self.node)
     }
 
-    //确定下注成功
-    public confirmBetJetton(eventName: string, betAreaJetton, isRepeat: boolean = false) {     
+    public confirmBetJetton(eventName: string, betAreaJetton, isRepeat: boolean = false) {     //确定下注成功
         let self = this
 
         let jettonList = []
@@ -146,14 +144,13 @@ export default class BetJetton extends cc.Component {
                     }))
                     jettonItem.runAction(action)
                 }
-            }, 0.1 * i, self.node)
+            }, 0.01 * i, self.node)
         }
 
         this.updateJettonNum(this.betJettonNum)
     }
 
-    //点击下注
-    public touchBetJetton(eventName: string, betAreaIdx) {   
+    public touchBetJetton(eventName: string, betAreaIdx) {   //点击下注
         this.initView()
 
         let dataObj = this.resolverData()
@@ -202,75 +199,46 @@ export default class BetJetton extends cc.Component {
         })
     }
 
-    //重复下注,暂时修改
-    public repeatBetJetton(eventName: string, betAreaJetton) {  
+    public repeatBetJetton(eventName: string, betAreaJetton) {   //重复下注
         let self = this
-        let i = 0 
-        self.schedule(function() {  
-            let jettonNum = betAreaJetton[i]
-            let dataObj = self.resolverData()
-            let beginPos = dataObj.beginPos
-            let endPos = dataObj.endPos
+        for (let i = 0; i < betAreaJetton.length; i++) {
+            FuncUtil.delayFunc(function () {
+                let jettonNum = betAreaJetton[i]
+                let dataObj = self.resolverData()
+                let beginPos = dataObj.beginPos
+                let endPos = dataObj.endPos
 
-            let prefab = NodePoolMgr.instance.getNood(NodePoolKey.BET_JETTON)
-            if (cc.isValid(prefab)) {
-                self.updateJettonItem(prefab, jettonNum, beginPos, endPos, self.repJettonList)
-            } else {
-                ResCfg.loadPrefab(self, "jettonItem", function (self, prefab) {
+                self.repBetJettonNum += jettonNum
+                if (i == betAreaJetton.length - 1) {
+                    self.updateJettonNum(self.repBetJettonNum + self.betJettonNum)
+                }
+
+                let prefab = NodePoolMgr.instance.getNood(NodePoolKey.BET_JETTON)
+                if (cc.isValid(prefab)) {
                     self.updateJettonItem(prefab, jettonNum, beginPos, endPos, self.repJettonList)
-                }, false, true)
-            }
+                } else {
+                    ResCfg.loadPrefab(self, "jettonItem", function (self, prefab) {
+                        self.updateJettonItem(prefab, jettonNum, beginPos, endPos, self.repJettonList)
+                    }, false, true)
+                }
 
-            self.repBetJettonNum += jettonNum
-            if (i == betAreaJetton.length - 1) {
-                self.updateJettonNum(self.repBetJettonNum + self.betJettonNum)
-            }
-            i++
-        }, 0.3*i+0.2, betAreaJetton.length-1);  
+                // ResCfg.loadPrefab(self, "jettonItem", function (self, prefab) {
+                //     let curView = cc.instantiate(prefab)
+                //     self.node.addChild(curView)
+                //     curView.setPosition(beginPos)
+                //     curView.tag = jettonNum
+                //     curView.getComponent('JettonItem').updateItemFun(jettonNum, function () {
+                //         let action1 = cc.moveTo(0.3, cc.p(endPos))
+                //         // curView.runAction(action1.easing(cc.easeOut(4)))
+                //         curView.runAction(action1)
+                //         self.repJettonList.push(curView)
+                //     })
+                // }, false, true)
+            }, 0.01 * i, self.node);
+        }
     }
 
-        // //重复下注，下面是原来的代码
-        // public repeatBetJetton(eventName: string, betAreaJetton) {  
-        //     let self = this
-        //     for (let i = 0; i < betAreaJetton.length; i++) {
-        //         FuncUtil.delayFunc(function () {
-        //             let jettonNum = betAreaJetton[i]
-        //             let dataObj = self.resolverData()
-        //             let beginPos = dataObj.beginPos
-        //             let endPos = dataObj.endPos
-    
-        //             let prefab = NodePoolMgr.instance.getNood(NodePoolKey.BET_JETTON)
-        //             if (cc.isValid(prefab)) {
-        //                 self.updateJettonItem(prefab, jettonNum, beginPos, endPos, self.repJettonList)
-        //             } else {
-        //                 ResCfg.loadPrefab(self, "jettonItem", function (self, prefab) {
-        //                     self.updateJettonItem(prefab, jettonNum, beginPos, endPos, self.repJettonList)
-        //                 }, false, true)
-        //             }
-    
-        //             self.repBetJettonNum += jettonNum
-        //             if (i == betAreaJetton.length - 1) {
-        //                 self.updateJettonNum(self.repBetJettonNum + self.betJettonNum)
-        //             }
-    
-        //             // ResCfg.loadPrefab(self, "jettonItem", function (self, prefab) {
-        //             //     let curView = cc.instantiate(prefab)
-        //             //     self.node.addChild(curView)
-        //             //     curView.setPosition(beginPos)
-        //             //     curView.tag = jettonNum
-        //             //     curView.getComponent('JettonItem').updateItemFun(jettonNum, function () {
-        //             //         let action1 = cc.moveTo(0.3, cc.p(endPos))
-        //             //         // curView.runAction(action1.easing(cc.easeOut(4)))
-        //             //         curView.runAction(action1)
-        //             //         self.repJettonList.push(curView)
-        //             //     })
-        //             // }, false, true)
-        //         }, 0.1 * i, self.node);
-        //     }
-        // }
-
-    //取消下注
-    public cancelBetJetton(eventName: string, betAreaJetton) {  
+    public cancelBetJetton(eventName: string, betAreaJetton) {  //取消下注
         let self = this
 
         for (let i = 0; i < this.jettonList.length; i++) {

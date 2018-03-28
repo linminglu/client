@@ -1,5 +1,6 @@
 import BaseAlertView from "../baseui/BaseAlertView"
-
+import { EmitterManager as Emitter } from "../../common/manager/EmitterManager";
+import { EmitterCfg } from "../../../app/config/EmitterConfig"
 const { ccclass, property } = cc._decorator;
 
 
@@ -19,19 +20,24 @@ export class AlertView extends BaseAlertView {
         this.btnConfirm.node.active = false;
         this.btnConfirmOne.node.active = false;
 
-        this.node.getChildByName("nodeBg").on(cc.Node.EventType.TOUCH_START, function(event){
+        this.node.getChildByName("nodeBg").on(cc.Node.EventType.TOUCH_START, function (event) {
             event.stopPropagation();
         })
+        Emitter.register(EmitterCfg.GAME_EXIT_GAME, this.btnCancelCallBack, this)
     }
+    onDestroy() {
 
+
+        Emitter.unregister(EmitterCfg.GAME_EXIT_GAME, this.btnCancelCallBack, this)
+    }
     constructor() {
         super();
     }
-    
+
     destructor() {
         this.destroy();
     }
-    
+
     btnCancelCallBack() {
         //////cc.log("--AlertView btnCancelCallBack")
         if (this.cancelObj && this.cancelObj.callBack) {
@@ -57,7 +63,7 @@ export class AlertView extends BaseAlertView {
 
         this.node.destroy();
     }
-    
+
     updateView(obj: Object) {
         this.tipStr = obj.tipStr;
         this.confirmOneObj = obj.confirmOneObj;
@@ -69,11 +75,11 @@ export class AlertView extends BaseAlertView {
         if (obj.cancelObj) {
             this.btnCancel.node.active = true;
         }
-        
+
         if (obj.confirmObj) {
             this.btnConfirm.node.active = true;
         }
-        
+
         if (obj.confirmOneObj) {
             this.btnConfirmOne.node.active = true;
         }

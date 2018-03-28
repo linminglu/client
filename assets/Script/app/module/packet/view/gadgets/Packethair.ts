@@ -117,7 +117,7 @@ export default class Packethair extends cc.Component {
             }
         }
         PacketController.instance.C_Mail_SendMail(obj);
-        TweenMsgView.showMsg(7)
+        TweenMsgView.getInstance().showMsg(7)
         PacketModule.instance.hide();
     }
 
@@ -159,7 +159,7 @@ export default class Packethair extends cc.Component {
         }
         cc.log(obj)
         PacketController.instance.C_Mail_SendMail(obj);
-        TweenMsgView.showMsg(7)
+        TweenMsgView.getInstance().showMsg(7)
         PacketModule.instance.hide();
     }
 

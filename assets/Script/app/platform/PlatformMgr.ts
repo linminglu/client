@@ -13,7 +13,7 @@ export namespace PlatformMgr {
 }
 
 export namespace AndroidPlatform {
-    let className: string = "org/cocos2dx/lib/Cocos2dxActivity"
+    let className: string = "org.cocos2dx.javascript.AppActivity"
 
     function callStaticMethod(className: string, funcName: string, sin: string, ...args: any[]) {
         if (HelpFunc.isAndroid) {
@@ -21,17 +21,17 @@ export namespace AndroidPlatform {
         } else {
             cc.error("请检查是否为Android平台调用")
         }
-    }
+}
 
-    export function exitGame() {
-        jsb.reflection.callStaticMethod("org/cocos2dx/lib/Cocos2dxActivity", "exitGame",
-            "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", "提示", "确定要退出游戏吗？", "确定", "取消");
-    }
+export function exitGame() {
+    jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "exitGame", "()V");
+}
 
-    export function getMemory() {
-        let memory = jsb.reflection.callStaticMethod("org/cocos2dx/lib/Cocos2dxActivity", "getMemory", "(I)I", 0);
+export function getMemory() {
+    console.log('进入原生平台反射！')
+    let memory = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getMemory", "()Ljava/lang/String;");
         return memory
-    }
+}
     
 }
 

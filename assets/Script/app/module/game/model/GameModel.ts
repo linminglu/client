@@ -131,18 +131,18 @@ export class GameModel extends BaseModel {
         }
 
         if ((this.usableGold - this.curSelectJetton.jettonNum) < 0) {
-            TweenMsgView.showMsg(5)
+            TweenMsgView.getInstance().showMsg(5)
             return
         }
         // //////cc.log("===========", this.betJettonTotalNum, this.curSelectJetton.jettonNum, this.maxMoney)
         if ((this.betJettonTotalNum + this.curSelectJetton.jettonNum) > this.maxMoney) {
-            TweenMsgView.showMsg(1)
+            TweenMsgView.getInstance().showMsg(1)
             return
         }
       
       
         if((this.regionalUpperLimit[betAreaIdx]+this.curSelectJetton.jettonNum)>this.singlemaxMoney){
-            TweenMsgView.showMsg(8)
+            TweenMsgView.getInstance().showMsg(8)
             return
         }
         //1
@@ -285,18 +285,18 @@ export class GameModel extends BaseModel {
 
     repeatBetJetton() {
         if (this.confirmBetJettonList.length <= 0) {
-            TweenMsgView.showMsg(6)
+            TweenMsgView.getInstance().showMsg(6)
             return
         }
 
         if ((this.usableGold - this.confirmBetJettonNum - this.betjettonNum) < 0) {
-            TweenMsgView.showMsg(5)
+            TweenMsgView.getInstance().showMsg(5)
             return
         }
         
         // cc.log("1===========", this.betJettonTotalNum, this.confirmBetJettonNum, this.betjettonNum, this.maxMoney)
         if ((this.betJettonTotalNum + this.confirmBetJettonNum) > this.maxMoney) {
-            TweenMsgView.showMsg(1)
+            TweenMsgView.getInstance().showMsg(1)
             return
         }
         //2
@@ -306,7 +306,7 @@ export class GameModel extends BaseModel {
             let JettonValue=0;
             if(this.confirmBetJettonList[i]!=null)JettonValue=eval(this.confirmBetJettonList[i].join('+'));
             if((this.regionalUpperLimit[i]+JettonValue)>this.singlemaxMoney){
-                TweenMsgView.showMsg(8)
+                TweenMsgView.getInstance().showMsg(8)
                 return
             }
             cc.log(this.regionalUpperLimit[i])

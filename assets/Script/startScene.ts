@@ -37,39 +37,36 @@ export default class StartScene extends cc.Component {
 
         //创建层管理
         LayerMgr.creatLayer();
-
-        if (CC_DEBUG) {
-            if (cc.sys.isNative) {
-
-               // this.createDebugBtn()
-               // this.createMemory()
-            }
+        if(cc.sys.ANDROID){
+            this.createMemory() 
         }
+        
         this.openLoginModuleFunc()  
     }
 
     createMemory() {
         let node = new cc.Node()
-        node.setContentSize(cc.size(200, 100))
+        node.setContentSize(cc.size(300, 100))
         node.setPosition(cc.p(0, 200))
 
         LayerMgr.topLayer.addChild(node, 9999)
 
-        this. lblMemory = node.addComponent(cc.Label)
-        this. lblMemory.horizontalAlign = cc.Label.HorizontalAlign.LEFT
-        this. lblMemory.node.anchorX = 0
-        this. lblMemory.fontSize = 20
+        this.lblMemory = node.addComponent(cc.Label)
+        this.lblMemory.horizontalAlign = cc.Label.HorizontalAlign.LEFT
+        this.lblMemory.node.anchorX = 0
+        this.lblMemory.fontSize = 20
         this.lblMemory.string = "memory"
         
-        // node.on('touchstart', function (event) {
-        //     let memory = PlatformMgr.getMemory()
-        //     lbl.string = `memory：${Math.floor(memory / 1024)}MB`
-        // }, this)
+        node.on('touchstart', function (event) {
+            let memory = PlatformMgr.getMemory()
+            console.log('当前内存：'+memory);
+            this.lblMemory.string = `memory：`+memory
+        }, this)
 
-        // this.schedule(function () {
-        //     let memory = PlatformMgr.getMemory()
-        //     lbl.string = `memory：${Math.floor(memory / 1024)}MB`
-        // }, 60)
+        this.schedule(function () {
+            let memory = PlatformMgr.getMemory()
+            this.lblMemory.string = `memory：`+memory
+        }, 30)
     }
 
     update(dt){

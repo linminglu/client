@@ -23,7 +23,7 @@ export default class GameView extends BaseView {
     viewLoading: string = "loadingView"
     protected gameTag: string = null
     protected gameBallTime: number = GameCfg.GAME_BALL_SHOW_TIME          //号码球倒计时3秒
-
+    protected enterGameAward:boolean=false
     onLoad() {
         super.onLoad()
         this.gameTag = GameColMgr.instance.getGameTag()
@@ -109,6 +109,7 @@ export default class GameView extends BaseView {
         let gameState = GameManager.instance.getGameState()
 
         if (gameState == 1) {  //开奖阶段
+            this.enterGameAward=true
             if ((enterGameMsg.openTotalTime - this.gameBallTime) < enterGameMsg.remainTime) {   //需要显示号码球
                 let gameBall = this.node.getChildByName("gameBall")
                 gameBall.active = true
@@ -117,6 +118,7 @@ export default class GameView extends BaseView {
                 Emitter.fire(EmitterCfg.GAME_BALL_SHOW, remainTime, enterGameMsg.resultMsg.cardTotals)
 
                 FuncUtil.delayFunc(function () {
+                    self.enterGameAward=false
                     Emitter.fire(EmitterCfg.GAME_START_FA_PAI, null)
                 }, remainTime, this.node)
             } else {
@@ -130,6 +132,9 @@ export default class GameView extends BaseView {
     }
 
     protected startAwardFun(eventName: string, remainTime: number = 0, endTime: number) {
+        if(this.enterGameAward){
+            return;
+        }
         if (remainTime > 0) {
             let enterGameMsg = GameManager.instance.getEnterGame()
             let gameBall = this.node.getChildByName("gameBall")

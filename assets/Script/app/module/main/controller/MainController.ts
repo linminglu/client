@@ -139,7 +139,6 @@ export class MainController extends BaseController {
                 self.enterGame(gameTag)
 
                 Emitter.fire(EmitterCfg.MAIN_HIDES, null)
-                Emitter.fire(EmitterCfg.MAIN_CHONLIAN)
             }, self)
         }, this)
     }

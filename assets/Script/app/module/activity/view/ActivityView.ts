@@ -50,7 +50,7 @@ export default class ActivityView extends BaseView {
 
     }
     btnShutCallBack() {
-        
+        MainController.instance.C_Activity_GetAvailableActivityList()
         ActivityModule.instance.hide()
 
     }
